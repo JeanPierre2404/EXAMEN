@@ -109,8 +109,8 @@ void Principal::inicializarWidget()
 
 void Principal::on_cmdAgregar_clicked()
 {
-    //EN ESTO ES NECESARIO PONER LA UBICACION DEL ARCHIVO DONDE SE GUARDEN
-    QString fileName = ("C:/Users/erick/Desktop/Tarea/Guardado/tareas.txt");
+    //IMPORTANTE: EN ESTO ES NECESARIO PONER LA UBICACION DEL ARCHIVO DONDE SE GUARDEN LAS TAREAS
+    QString fileName = ("C:/Users/erick/Desktop/Tarea/Tareas/tareas.txt");
        QFile data(fileName);
        if (data.open(QFile::WriteOnly | QFile::Truncate))
        {
