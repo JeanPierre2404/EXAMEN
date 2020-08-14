@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>746</width>
-    <height>326</height>
+    <width>848</width>
+    <height>401</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>848</width>
+    <height>401</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>848</width>
+    <height>401</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Qt-Tareas Pendientes</string>
@@ -16,6 +28,9 @@
   <property name="windowIcon">
    <iconset resource="recursos.qrc">
     <normaloff>:/Recursos/requisito.png</normaloff>:/Recursos/requisito.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(213, 246, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
@@ -26,10 +41,20 @@
         <widget class="QWidget" name="widget_2" native="true">
          <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="2">
-           <widget class="QLineEdit" name="inNombreTarea"/>
+           <widget class="QLineEdit" name="inNombreTarea">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Ingrese la tarea pendiente&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_2">
+            <property name="font">
+             <font>
+              <family>Dubai Medium</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>Fecha:</string>
             </property>
@@ -37,6 +62,12 @@
           </item>
           <item row="0" column="0" colspan="2">
            <widget class="QLabel" name="label">
+            <property name="font">
+             <font>
+              <family>Dubai Medium</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>Nombre de la tarea:</string>
             </property>
@@ -53,6 +84,12 @@
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
            <widget class="QGroupBox" name="groupBox_2">
+            <property name="font">
+             <font>
+              <family>Dubai Medium</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
             <property name="title">
              <string>Prioriadad</string>
             </property>
@@ -61,6 +98,9 @@
               <widget class="QRadioButton" name="inAlta">
                <property name="text">
                 <string>Alta</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -83,6 +123,12 @@
           </item>
           <item>
            <widget class="QGroupBox" name="groupBox">
+            <property name="font">
+             <font>
+              <family>Dubai Medium</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
             <property name="title">
              <string>Tipo</string>
             </property>
@@ -91,7 +137,11 @@
             </property>
             <layout class="QVBoxLayout" name="verticalLayout">
              <item>
-              <widget class="QComboBox" name="inTipo"/>
+              <widget class="QComboBox" name="inTipo">
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(204, 255, 255);</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -106,8 +156,8 @@
      <widget class="QGroupBox" name="groupBox_3">
       <property name="font">
        <font>
-        <family>Agency FB</family>
-        <pointsize>11</pointsize>
+        <family>Dubai Medium</family>
+        <pointsize>10</pointsize>
        </font>
       </property>
       <property name="title">
@@ -156,7 +206,7 @@
              <enum>Qt::LeftToRight</enum>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(85, 255, 127);</string>
+             <string notr="true">background-color: rgb(189, 242, 216);</string>
             </property>
             <property name="text">
              <string>Agregar</string>
@@ -176,7 +226,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>746</width>
+     <width>848</width>
      <height>21</height>
     </rect>
    </property>
@@ -184,7 +234,6 @@
     <property name="title">
      <string>Archivo</string>
     </property>
-    <addaction name="actionFinalizar"/>
     <addaction name="actionSalir"/>
    </widget>
    <widget class="QMenu" name="menuAyuda">
@@ -208,17 +257,9 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionSalir"/>
-   <addaction name="actionFinalizar"/>
+   <addaction name="separator"/>
+   <addaction name="actionFinalizar_2"/>
   </widget>
-  <action name="actionFinalizar">
-   <property name="icon">
-    <iconset resource="recursos.qrc">
-     <normaloff>:/Recursos/cerrar-sesion.png</normaloff>:/Recursos/cerrar-sesion.png</iconset>
-   </property>
-   <property name="text">
-    <string>Finalizar</string>
-   </property>
-  </action>
   <action name="actionSalir">
    <property name="icon">
     <iconset resource="recursos.qrc">
@@ -235,6 +276,18 @@
    </property>
    <property name="text">
     <string>Acerca de</string>
+   </property>
+  </action>
+  <action name="actionFinalizar_2">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/Recursos/correcto.png</normaloff>:/Recursos/correcto.png</iconset>
+   </property>
+   <property name="text">
+    <string>Finalizar</string>
+   </property>
+   <property name="toolTip">
+    <string>Finalizar</string>
    </property>
   </action>
  </widget>

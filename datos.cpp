@@ -1,4 +1,6 @@
 #include "datos.h"
+#include "ui_principal.h"
+#include "principal.h"
 
 datos::datos(QObject *parent) : QObject(parent)
 {
@@ -21,3 +23,15 @@ QString datos::tipo() const
 {
     return m_tipo;
 }
+
+QString datos::nombreTarea() const
+{
+    return m_nombreTarea;
+}
+
+QDate datos::fecha() const
+{
+    return fecha();
+}
+
+

@@ -6,24 +6,21 @@
 #include <QDate>
 #include <QFileDialog>
 #include <QDebug>
+#include <QColor>
 Principal::Principal(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Principal)
 {
     ui->setupUi(this);
 
-    /*QStringList cabecera = {"N", "Nombre", "Fecha", "Tipo"};
-    ui->outDetalles->setColumnCount(4);
-    ui->outDetalles->setHorizontalHeaderLabels(cabecera);*/
-
     connect(ui->cmdAgregar, SIGNAL(released()), this , SLOT(registrar()));
-
 
     connect(ui->actionSalir, SIGNAL(triggered(bool)),
             this, SLOT(close()));
 
     inicializarDato();
 
+    filas = -1;
 
 }
 
@@ -36,11 +33,11 @@ void Principal::registrar()
 {
     QString importancia;
     if(ui->inAlta->isChecked()){
-        importancia = "Alto";
+        importancia = tr("Alto");
     }else if(ui->inMedio->isChecked()){
-        importancia = "Media";
+        importancia = tr("Media");
     }else{
-        importancia = "Baja";
+        importancia = tr("Baja");
     }
     QDate Fecha = ui->inFecha->date();
     QString nombreDeTarea = ui->inNombreTarea->text();
@@ -53,7 +50,33 @@ void Principal::registrar()
     ui->outDetalles->setItem(Posicion,1,new QTableWidgetItem(Fecha.toString()));
     ui->outDetalles->setItem(Posicion,2, new QTableWidgetItem(QString(importancia)));
     ui->outDetalles->setItem(Posicion,3, new QTableWidgetItem(i->tipo()));
+//
+        //CAMBIANDO DE COLOR LAS PRIORIDADES
+    if(ui->inAlta->isChecked()){
+        for(int i=0;i<4;i++){
+            QColor color(224, 46, 32);//ROJO
+            ui->outDetalles->item(Posicion,i)->setBackgroundColor(color);
+        }
+    }
+    else if (ui->inMedio->isChecked()) {
+        for(int i=0;i<4;i++){
+            QColor color1(224,119,32);//NARANJA
+            ui->outDetalles->item(Posicion,i)->setBackgroundColor(color1);
+        }
+    }else if (ui->inBajo->isChecked()){
+        for(int i=0;i<4;i++){
+            QColor color2(255, 233, 0);//AMARILLO
+            ui->outDetalles->item(Posicion,i)->setBackgroundColor(color2);
+        }
+    }
 
+}
+
+void Principal::limpiar()
+{
+    ui->inNombreTarea->setText("");
+    ui->inAlta->setChecked(true);
+    ui->inFecha->clear();
 }
 
 
@@ -66,10 +89,10 @@ void Principal::on_actionAcerca_de_triggered()
 
 void Principal::inicializarDato()
 {
-    m_datos.append(new datos(1,"Estudiante"));
-    m_datos.append(new datos(2,"Universidad"));
-    m_datos.append(new datos(3,"Familia"));
-    m_datos.append(new datos(4,"Otras"));
+    m_datos.append(new datos(1,tr("Estudiante")));
+    m_datos.append(new datos(2,tr("Universidad")));
+    m_datos.append(new datos(3,tr("Familia")));
+    m_datos.append(new datos(4,tr("Otras")));
     inicializarWidget();
 }
 
@@ -78,7 +101,7 @@ void Principal::inicializarWidget()
     for(int i = 0;i< m_datos.length(); ++i){
         ui->inTipo->addItem(m_datos.at(i)->tipo());
         // crearn la cabecera
-        QStringList cabecera = {"Tarea", "Fecha", "Prioridad", "Tipo"};
+        QStringList cabecera = {tr("Tarea"), tr("Fecha"), tr("Prioridad"), tr("Tipo")};
         ui->outDetalles->setColumnCount(4);
         ui->outDetalles->setHorizontalHeaderLabels(cabecera);
     }
@@ -86,6 +109,7 @@ void Principal::inicializarWidget()
 
 void Principal::on_cmdAgregar_clicked()
 {
+    //EN ESTO ES NECESARIO PONER LA UBICACION DEL ARCHIVO DONDE SE GUARDEN
     QString fileName = ("C:/Users/erick/Desktop/Tarea/Guardado/tareas.txt");
        QFile data(fileName);
        if (data.open(QFile::WriteOnly | QFile::Truncate))
@@ -111,6 +135,19 @@ void Principal::on_cmdAgregar_clicked()
            ui->statusbar->showMessage("Datos almacenados en: " + fileName, 5000);
            data.close();
        }
+
+       limpiar();
 }
 
 
+//BORRANDO LA FILA DE LA LISTA DE TAREAS
+void Principal::on_actionFinalizar_2_triggered()
+{
+    ui->outDetalles->removeRow(filas);
+    ui->statusbar->showMessage(tr("Fila eliminada"), 5000);
+}
+
+void Principal::on_outDetalles_itemClicked(QTableWidgetItem *item)
+{
+   filas = item->row();
+}

@@ -3,6 +3,8 @@
 
 #include <QObject>
 
+
+
 class datos : public QObject
 {
     Q_OBJECT
@@ -17,15 +19,17 @@ public:
     int fila() const;
     QString tipo() const;
 
+    QString nombreTarea()const;
+    QDate fecha()const;
+
 signals:
 
 private:
     int m_fila;
     QString m_tipo;
 
-
-
-
+    QString m_nombreTarea;
+    //QDate m_fecha;
 };
 
 #endif // DATOS_H
