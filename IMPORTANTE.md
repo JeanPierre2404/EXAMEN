@@ -1,0 +1,6 @@
+# EXAMEN
+Examen 02
+En guardar datos en un arhivo .txt es importante que ponga la ubicacion del destino es decir el "PATH" donde quiera guardar y mas si es en Linux.
+Como por ejemplo: "C:/Users/erick/Desktop/Tarea/Guardado/tareas.txt"   este es en mi caso. Para que se guarde solo tengra que crear un archivo.txt  y poner correctamente el path.
+
+GRACIAS POR SU ATENCION :)
